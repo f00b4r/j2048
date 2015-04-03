@@ -1,0 +1,55 @@
+#grid {
+    -fx-background-color: #BBADA0;
+}
+
+.node-empty {
+    -fx-background-color: #CCC0B3;
+}
+
+.node {
+    -fx-background-radius: 5;
+}
+
+.node-2 {
+    -fx-background-color: #eee4da;
+}
+
+.node-4 {
+    -fx-background-color: #ede0c8;
+}
+
+.node-8 {
+    -fx-background-color: #f2b179;
+}
+
+.node-16 {
+    -fx-background-color: #f59563;
+}
+
+.node-32 {
+    -fx-background-color: #f67c5f;
+}
+
+.node-64 {
+    -fx-background-color: #f65e3b;
+}
+
+.node-128 {
+    -fx-background-color: #edcf72;
+}
+
+.node-256 {
+    -fx-background-color: #edcc61;
+}
+
+.node-512 {
+    -fx-background-color: #edc850;
+}
+
+.node-1024 {
+    -fx-background-color: #edc53f;
+}
+
+.node-2048 {
+    -fx-background-color: #f9f6f2;
+}
