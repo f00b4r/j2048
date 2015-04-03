@@ -1,4 +1,4 @@
-package cz.jfx.j2048.gui.data;
+package cz.jfx.j2048.data;
 
 /**
  *
@@ -8,6 +8,7 @@ public enum GameState {
 
     FRESH,
     PLAY,
+    HOLD,
     WIN,
     LOSE;
 }

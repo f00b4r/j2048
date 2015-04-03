@@ -1,0 +1,20 @@
+Remake of game 2048 by Gabriele Cirulli (http://gabrielecirulli.github.io/2048/).
+
+[Info]
+
+Version: $$VERSION$$
+Released: $$RELEASED$$
+
+[Author]
+
+    Milan Felix Sulc <dev@jfx.cz>
+    http://dev.jfx.cz
+
+[Shortcuts]
+
+CTRL + N    =   NEW GAME
+
+[Changelog]
+
+1.0
+- Base implementation

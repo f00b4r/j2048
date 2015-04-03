@@ -1,55 +1,96 @@
+#root {
+    -fx-font-smoothing-type: lcd;
+    -fx-smooth: true;
+    -fx-font-family: 'Clear Sans Bold', 'Helvetica Neue', Arial, sans-serif;
+}
+
 #grid {
     -fx-background-color: #BBADA0;
 }
 
-.node-empty {
+#grid .node-empty {
     -fx-background-color: #CCC0B3;
 }
 
-.node {
-    -fx-background-radius: 5;
+#grid .node {
+    -fx-background-radius: 8;
+    -fx-font-size: 40px;
 }
 
-.node-2 {
+#grid .node-2 {
     -fx-background-color: #eee4da;
 }
 
-.node-4 {
+#grid .node-4 {
     -fx-background-color: #ede0c8;
 }
 
-.node-8 {
+#grid .node-8 {
     -fx-background-color: #f2b179;
 }
 
-.node-16 {
+#grid .node-16 {
     -fx-background-color: #f59563;
 }
 
-.node-32 {
+#grid .node-32 {
     -fx-background-color: #f67c5f;
 }
 
-.node-64 {
+#grid .node-64 {
     -fx-background-color: #f65e3b;
 }
 
-.node-128 {
+#grid .node-128 {
     -fx-background-color: #edcf72;
 }
 
-.node-256 {
+#grid .node-256 {
     -fx-background-color: #edcc61;
 }
 
-.node-512 {
+#grid .node-512 {
     -fx-background-color: #edc850;
 }
 
-.node-1024 {
+#grid .node-1024 {
     -fx-background-color: #edc53f;
 }
 
-.node-2048 {
+#grid .node-2048 {
     -fx-background-color: #f9f6f2;
+}
+
+#stats {
+    -fx-background-color: #BBADA0;
+}
+
+#stats .logo {
+    -fx-font-size: 60px;
+    -fx-text-fill: #eee4da;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 30, 0, 0, 0);
+}
+
+#stats .container {
+    -fx-background-color: #faf8ef;
+    -fx-background-radius: 8;
+}
+
+#stats .container2 {
+    -fx-background-color: #8f7a66;
+    -fx-background-radius: 8;
+}
+
+#stats .container2 .new-game {
+    -fx-text-fill: #eee4da;
+    -fx-font-size: 18px;
+}
+
+#stats .container .score-label {
+    -fx-text-fill: grey;
+    -fx-font-size: 13px;
+}
+#stats .container .score {
+    -fx-text-fill: #f67c5f;
+    -fx-font-size: 25px;
 }
