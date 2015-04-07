@@ -12,7 +12,7 @@
             <children>
                 <HBox id="stats" minHeight="-Infinity" prefHeight="100.0" VBox.vgrow="NEVER">
                     <children>
-                        <Pane prefHeight="100.0" prefWidth="207.0">
+                        <Pane fx:id="logo" prefHeight="100.0" prefWidth="207.0">
                             <children>
                                 <Label alignment="CENTER" graphicTextGap="0.0" minWidth="-Infinity" prefHeight="100.0" prefWidth="207.0" styleClass="logo" text="j2048" textAlignment="CENTER" />
                             </children>
@@ -23,9 +23,10 @@
                                 <Pane layoutX="15.0" layoutY="13.0" prefHeight="74.0" prefWidth="120.0" styleClass="container2">
                                     <children>
                                         <Label alignment="CENTER" onMouseClicked="#actionNewGame" prefHeight="74.0" prefWidth="120.0" styleClass="new-game" text="NEW GAME" textAlignment="CENTER">
-<cursor>
-<Cursor fx:constant="HAND" />
-</cursor></Label>
+                                            <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                            </cursor>
+                                        </Label>
                                     </children>
                                 </Pane>
                             </children>

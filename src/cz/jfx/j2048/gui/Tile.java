@@ -66,8 +66,8 @@ public class Tile extends Label {
 
         // Basic settings
         this.setMinSize(50, 50);
-        this.setPrefSize(150, 150);
         this.setMaxSize(300, 300);
+        this.setPrefSize(120, 120);
         this.setAlignment(Pos.CENTER);
     }
 
@@ -254,7 +254,7 @@ public class Tile extends Label {
                 // Set value 
                 value.set(TileValue.MIN_VALUE);
             }
-            
+
             // Update state
             randomized.set(true);
 

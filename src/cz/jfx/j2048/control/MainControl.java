@@ -17,6 +17,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 
 /**
@@ -44,6 +45,8 @@ public class MainControl implements Initializable {
     private Label currentScore;
     @FXML
     private Label bestScore;
+    @FXML
+    private Pane logo;
 
     public MainControl(PersistenceService persistenceService) {
         this.persistenceService = persistenceService;
@@ -143,6 +146,9 @@ public class MainControl implements Initializable {
         // Bindings: best score
         bestScore.textProperty().bind(persistenceService.bestScoreProperty().asString());
 
+        // Bindings: logo show/hide
+        logo.visibleProperty().bind(scene.widthProperty().greaterThan(650));
+
         // Init grid
         game.init(GRID_ROWS, GRID_COLS);
 
@@ -159,7 +165,7 @@ public class MainControl implements Initializable {
     private void actionNewGame() {
         game.reset();
         game.play();
-        game.rand(GRID_RANDOM*2);
+        game.rand(GRID_RANDOM * 2);
     }
 
     @FXML
