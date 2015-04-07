@@ -12,4 +12,4 @@ java -jar j2048.jar
 
 ## Screenshots
 
-![Screen #1](https://raw.githubusercontent.com/GameFX/j2048/master/screen.png)
+![Screen #1](https://raw.githubusercontent.com/GameFX/j2048/master/j2048.png)
