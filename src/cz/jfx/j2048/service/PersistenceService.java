@@ -4,8 +4,12 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -18,9 +22,15 @@ public class PersistenceService {
 
     // Vars - properties
     private final IntegerProperty bestScore;
-    
+    private final IntegerProperty totalGames;
+    private final IntegerProperty instanceGames;
+    private final StringProperty nick;
+
     public PersistenceService() {
         bestScore = new SimpleIntegerProperty(0);
+        totalGames = new SimpleIntegerProperty(0);
+        instanceGames = new SimpleIntegerProperty(0);
+        nick = new SimpleStringProperty(System.getProperty("user.name"));
     }
 
     /**
@@ -30,6 +40,18 @@ public class PersistenceService {
      */
     public final IntegerProperty bestScoreProperty() {
         return bestScore;
+    }
+
+    public final IntegerProperty totalGamesProperty() {
+        return totalGames;
+    }
+
+    public final IntegerProperty instanceGamesProperty() {
+        return instanceGames;
+    }
+
+    public final StringProperty nickProperty() {
+        return nick;
     }
 
     /**
@@ -45,8 +67,9 @@ public class PersistenceService {
 
             // Set properties
             bestScore.set(Integer.valueOf(p.getProperty("score.best", "0")));
+            totalGames.set(Integer.valueOf(p.getProperty("games.total", "0")));
         } catch (IOException | NumberFormatException ex) {
-            ex.printStackTrace();
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -62,11 +85,12 @@ public class PersistenceService {
 
             // Set properties
             p.setProperty("score.best", String.valueOf(bestScore.get()));
+            p.setProperty("games.total", String.valueOf(totalGames.get()));
 
             // Store
             p.store(out, null);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

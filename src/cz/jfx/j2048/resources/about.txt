@@ -12,9 +12,6 @@ Released: $$RELEASED$$
 
 [Shortcuts]
 
-CTRL + N    =   NEW GAME
-
-[Changelog]
-
-1.0
-- Base implementation
+F1 = HELP
+F5 / CTRL + N = NEW GAME
+F10 = SCREEN SHOT

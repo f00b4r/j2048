@@ -85,7 +85,7 @@ public class TileGrid extends GridPane {
                     case 2048:
                         rt = new RotateTransition(Duration.millis(100), node);
                         rt.setByAngle(360);
-                        rt.setCycleCount(1);
+                        rt.setCycleCount(2);
                         rt.play();
                         break;
                 }

@@ -1,4 +1,15 @@
 Changelog
 
+1.1 - 27/04/2015
+- Added launch4j config
+- GUI - fix minimal resizing
+- Added shortcuts:
+	- F5	= NEW GAME
+	- F10 	= SCREEN SHOT
+
 1.0 - 07/04/2015
+- Shorcuts: 
+	- CTRL + N 	= NEW GAME
+	- F1		= ABOUT
+- Control: arrows (LEFT, TOP, RIGHT, DOWN)	
 - Base implementation

@@ -5,20 +5,29 @@ import cz.jfx.j2048.gui.TileGrid;
 import cz.jfx.j2048.data.Game;
 import cz.jfx.j2048.data.GameState;
 import cz.jfx.j2048.service.PersistenceService;
+import cz.jfx.j2048.service.RankService;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -36,9 +45,12 @@ public class MainControl implements Initializable {
 
     // Vars - services
     private final PersistenceService persistenceService;
+    private final RankService rankService;
 
     // FXML
     private Scene scene;
+    @FXML
+    private AnchorPane root;
     @FXML
     private TileGrid grid;
     @FXML
@@ -48,8 +60,9 @@ public class MainControl implements Initializable {
     @FXML
     private Pane logo;
 
-    public MainControl(PersistenceService persistenceService) {
+    public MainControl(PersistenceService persistenceService, RankService rankService) {
         this.persistenceService = persistenceService;
+        this.rankService = rankService;
     }
 
     @Override
@@ -101,8 +114,15 @@ public class MainControl implements Initializable {
                     // New game
                     if (event.isControlDown()) {
                         actionNewGame();
-                        return;
                     }
+                    break;
+                case F5:
+                    // New game
+                    actionNewGame();
+                    break;
+                case F10:
+                    // Screenshot
+                    actionScreenshot();
                     break;
                 case F1:
                     // About
@@ -117,12 +137,18 @@ public class MainControl implements Initializable {
         // Bindings: game state changes
         game.stateProperty().addListener((obs, ov, nv) -> {
             if (nv == GameState.WIN) {
+                // Share score
+                rankService.publish(game.scoreProperty().get());
+
                 // Show dialog
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Victory!");
                 alert.setContentText("Hey man! You win, excellent job.");
                 alert.showAndWait();
             } else if (nv == GameState.LOSE) {
+                // Share score
+                rankService.publish(game.scoreProperty().get());
+
                 // Show dialog
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setHeaderText("Lose!");
@@ -163,6 +189,12 @@ public class MainControl implements Initializable {
      */
     @FXML
     private void actionNewGame() {
+        // Increase games in this instance
+        persistenceService.instanceGamesProperty().set(persistenceService.instanceGamesProperty().get() + 1);
+        // Increase total games 
+        persistenceService.totalGamesProperty().set(persistenceService.totalGamesProperty().get() + 1);
+
+        // Reset & play
         game.reset();
         game.play();
         game.rand(GRID_RANDOM * 2);
@@ -185,4 +217,31 @@ public class MainControl implements Initializable {
         dialog.getDialogPane().getButtonTypes().add(loginButtonType);
         dialog.show();
     }
+
+    @FXML
+    private void actionScreenshot() {
+        WritableImage image = root.snapshot(new SnapshotParameters(), null);
+
+        FileChooser chooser = new FileChooser();
+
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Image (.png)", "png");
+        chooser.getExtensionFilters().add(filter);
+        chooser.setSelectedExtensionFilter(filter);
+        chooser.setInitialDirectory(new File("."));
+        chooser.setInitialFileName("snapshot.png");
+
+        File file = chooser.showSaveDialog(scene.getWindow());
+
+        try {
+            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Snapshop generated.");
+            alert.showAndWait();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Application can not generate snapshot.");
+            alert.showAndWait();
+        }
+    }
+
 }
